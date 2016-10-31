@@ -42,5 +42,5 @@ setup(
     include_package_data=True,
     install_requires=install_requires,
     dependency_links=dependency_links,
-    entry_points={'console_scripts': ['demo=demo:main']}
+    entry_points={'console_scripts': ['demo=demo.driver:main']}
 )

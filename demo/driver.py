@@ -23,8 +23,11 @@ def get_parameters_input():
     parser.add_argument("word", help="a word")
     return parser.parse_args()
 
-if __name__ == '__main__':
+def main():
     params = get_parameters_input()
     logging.info("-" * 80)
     logging.info("ARGS: %s", params)
     logging.info("-" * 80)
+
+if __name__ == '__main__':
+    main()
