@@ -11,6 +11,18 @@ maintain for others platforms.
 
 Only tested on **Fedora 24**
 
+LINKS
+======
+
+these links can be helpful
+
+* https://fedoraproject.org/wiki/How_to_create_an_RPM_package
+* https://developer.fedoraproject.org/deployment/rpm/about.html
+* https://fedoraproject.org/wiki/Using_Mock_to_test_package_builds
+* https://docs.python.org/2/distutils/builtdist.html
+* https://copr.fedorainfracloud.org/coprs/
+* http://miroslav.suchy.cz/blog/archives/2013/12/29/how_to_build_in_copr/
+
 Steps
 =====
 
@@ -20,7 +32,7 @@ Steps
 
 2. Make sure you have all packages otherwise install:
 
-	$ sudo dnf install git git-review gcc make rpm-build python-devel python-setuptools python-pip python2-flake8 pylint python-sphinx python2-devel python-setuptools python-kitchen python-pip openssl-devel libffi-devel python-oslo-serialization python-nose python-pep8
+	$ sudo dnf install git git-review gcc make rpm-build python-devel python-setuptools python-pip python2-flake8 pylint python-sphinx python2-devel python-setuptools python-kitchen python-pip openssl-devel libffi-devel python-oslo-serialization python-nose python-pep8 mock
 
 3. Generating RPM
 
@@ -61,6 +73,42 @@ After install you can check man page:
 7. uninstall
 
 	$ sudo dnf remove demo -y
+
+
+Building for others variants
+============================
+
+Using mock to build rpm for F24
+
+	$ make srpm
+	$ mock -r fedora-24-x86_64 rpmbuild/SRPMS/demo-0.0.1-1.src.rpm
+
+should get something like this:
+
+	Finish: run
+	[ecerquei@dev demo]$ ls /var/lib/mock/fedora-24-x86_64/result
+	build.log  demo-0.0.1-1.src.rpm  demo-0.0.1-1.x86_64.rpm  root.log  state.log
+
+
+Using mock to build rpm for EPEL7, CentOS
+
+	$ make srpm
+	$ mock --dnf -r epel-7-x86_64 rpmbuild/SRPMS/demo-0.0.1-1.src.rpm
+
+should get something like this:
+
+	Finish: rpmbuild demo-0.0.1-1.src.rpm
+	Finish: build phase for demo-0.0.1-1.src.rpm
+	INFO: Done(rpmbuild/SRPMS/demo-0.0.1-1.src.rpm) Config(epel-7-x86_64) 0 minutes 29 seconds
+	INFO: Results and/or logs in: /var/lib/mock/epel-7-x86_64/result
+
+
+COPR
+======
+
+
+
+
 
 
 OUTPUTS
