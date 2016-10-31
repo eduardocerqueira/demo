@@ -16,6 +16,7 @@ LINKS
 
 these links can be helpful
 
+* http://www.rpm.org/max-rpm
 * https://fedoraproject.org/wiki/How_to_create_an_RPM_package
 * https://developer.fedoraproject.org/deployment/rpm/about.html
 * https://fedoraproject.org/wiki/Using_Mock_to_test_package_builds
@@ -75,8 +76,8 @@ After install you can check man page:
 	$ sudo dnf remove demo -y
 
 
-Building for others variants
-============================
+Multi-architecture/operating system Support
+===========================================
 
 Using mock to build rpm for F24
 
@@ -102,6 +103,8 @@ should get something like this:
 	INFO: Done(rpmbuild/SRPMS/demo-0.0.1-1.src.rpm) Config(epel-7-x86_64) 0 minutes 29 seconds
 	INFO: Results and/or logs in: /var/lib/mock/epel-7-x86_64/result
 
+
+for more info read: http://www.rpm.org/max-rpm/s1-rpm-philosophy-multi-architecture.html
 
 COPR
 ======
