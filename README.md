@@ -106,9 +106,11 @@ should get something like this:
 COPR
 ======
 
+Follow steps in Copr to create your account and a new project, in my case it is demo. Install copr-cli and submit a build:
 
+	$ copr-cli build demo https://github.com/eduardocerqueira/demo/raw/master/copr/demo-0.0.1-1.src.rpm
 
-
+https://copr.fedorainfracloud.org/coprs/eduardocerqueira/demo/build/471574/
 
 
 OUTPUTS
