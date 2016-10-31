@@ -1,0 +1,396 @@
+.\" Man page generated from reStructuredText.
+.
+.TH "DEMO" "1" "Oct 31, 2016" "0.0.1" "Demo"
+.SH NAME
+Demo \- Demo Documentation
+.
+.nr rst2man-indent-level 0
+.
+.de1 rstReportMargin
+\\$1 \\n[an-margin]
+level \\n[rst2man-indent-level]
+level margin: \\n[rst2man-indent\\n[rst2man-indent-level]]
+-
+\\n[rst2man-indent0]
+\\n[rst2man-indent1]
+\\n[rst2man-indent2]
+..
+.de1 INDENT
+.\" .rstReportMargin pre:
+. RS \\$1
+. nr rst2man-indent\\n[rst2man-indent-level] \\n[an-margin]
+. nr rst2man-indent-level +1
+.\" .rstReportMargin post:
+..
+.de UNINDENT
+. RE
+.\" indent \\n[an-margin]
+.\" old: \\n[rst2man-indent\\n[rst2man-indent-level]]
+.nr rst2man-indent-level -1
+.\" new: \\n[rst2man-indent\\n[rst2man-indent-level]]
+.in \\n[rst2man-indent\\n[rst2man-indent-level]]u
+..
+.sp
+Contents:
+.SH SETUP DEVELOPMENT ENVIRONMENT
+.SS Source Code
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+$ git clone https://github.com/eduardocerqueira/demo.git
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.SS Installation
+.SS Option 1: Start it on RPM
+.sp
+For development purposes, install following dependencies:
+.INDENT 0.0
+.IP \(bu 2
+python = 2.7
+.IP \(bu 2
+python\-pip
+.IP \(bu 2
+Run the following
+.INDENT 2.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+$ workon demo
+$ pip install \-r requirements/devel.txt
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.UNINDENT
+.SS Option 2: Start it on virtualenv
+.INDENT 0.0
+.IP \(bu 2
+After that, run
+.INDENT 2.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+$ pip install virtualenvwrapper
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.sp
+and setup according to \(aqSetup\(aq steps in \fB/usr/bin/virtualenvwrapper.sh\fP\&.
+Then run
+.INDENT 2.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+$ mkvirtualenv demo \-\-system\-site\-packages
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.IP \(bu 2
+Run the following
+.INDENT 2.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+$ workon demo
+$ pip install \-r requirements/devel.txt
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.sp
+to activate \fIdemo\fP virtualenv and install all the dependencies.
+.UNINDENT
+.SS Option 3: Start it on Docker
+.INDENT 0.0
+.IP \(bu 2
+Install Docker: see the \fI\%official installation
+guide\fP for details. Generally, it
+might be enough to run install it with \fByum\fP and the run it.
+.INDENT 2.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+$ sudo yum install docker\-engine
+$ sudo service docker start
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.IP \(bu 2
+Use this command to build a new image
+.INDENT 2.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+$ sudo docker build \-t <YOUR_NAME>/demo <the directory your Dockerfile is located>
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.IP \(bu 2
+Run the container
+.INDENT 2.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+$ docker run \-it \-P \-v $PWD:$PWD <YOUR_NAME>/demo python $PWD/driver.py \-\-help
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.IP \(bu 2
+Check the address
+.INDENT 2.0
+.IP 1. 3
+Find the address of the docker machine (127.0.0.1 \-\-> DOCKER_HOST).
+.IP 2. 3
+Find the mapped port of your running container
+.INDENT 2.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+$ sudo docker ps \-l \-\-> PORT
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.UNINDENT
+.IP \(bu 2
+Access it by visiting \fBDOCKER_HOST:PORT\fP in your web browser.
+.UNINDENT
+.SH RELEASE
+.SS Versioning
+.sp
+demo versioning is based on \fI\%Semantic Versioning\fP\&.
+.sp
+And it\(aqs RPM compatible.
+.sp
+Given a version number MAJOR.MINOR.PATCH, increment the:
+.INDENT 0.0
+.IP 1. 3
+MAJOR version when you make incompatible API changes,
+.IP 2. 3
+MINOR version when you add functionality in a backwards\-compatible manner,
+.IP 3. 3
+PATCH version when you make backwards\-compatible bug fixing.
+.UNINDENT
+.sp
+Additional labels for pre\-release and build metadata are available as extensions to the MAJOR.MINOR.PATCH format.
+.INDENT 0.0
+.IP 1. 3
+A pre\-release version MAY be denoted by appending a hyphen and an identifier immediately following the patch version.
+.sp
+Identifier MUST be comprised and only with ASCII alphanumerics [0\-9A\-Za\-z].
+Identifier MUST NOT be empty.
+Numeric identifier MUST NOT include leading zeroes.
+Pre\-release versions have a lower precedence than the associated normal version.
+A pre\-release version indicates that the version is unstable and might not satisfy the intended compatibility requirements as denoted by its associated normal version.
+Examples: 1.0.0\-alpha, 1.0.0\-sprint5, 1.0.0\-rc4.
+.IP 2. 3
+Build metadata MAY be denoted by appending a hyphen and a series of dot separated identifiers immediately following the patch or a dot and a series of dot separated identifiers immediately following the pre\-release version.
+.sp
+Identifiers MUST be comprise and only with ASCII alphanumerics [0\-9A\-Za\-z].
+Identifiers MUST NOT be empty.
+Build metadata SHOULD be ignored when determining version precedence.
+Thus two versions that differ only in the build metadata, have the same precedence.
+Examples: 1.0.0\-12.g1234abc, 1.0.0\-s5.4.g1234abc.
+.UNINDENT
+.SS Release Instruction
+.sp
+In practice, we use \fItito\fP to add git tag and do release including tag based on releases and current HEAD based on test releases.
+.sp
+\fBNOTE:\fP
+.INDENT 0.0
+.INDENT 3.5
+\fItito\fP version >= 0.6.2, install guide refer to: \fIhttps://github.com/dgoodwin/tito\fP
+.UNINDENT
+.UNINDENT
+.sp
+A short instructions as:
+.INDENT 0.0
+.IP 1. 3
+Tag: tito tag
+.IP 2. 3
+Test Build: tito build \-\-rpm \-\-offline
+.IP 3. 3
+Push: git push origin && git push origin $TAG
+.IP 4. 3
+Release: tito release copr\-demo/copr\-demo\-test
+.UNINDENT
+.sp
+For each step, more detail are:
+.SS Tag
+.sp
+A new git tag need to be added before starting a new release:
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+$ tito tag
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.sp
+It will:
+.INDENT 0.0
+.IP \(bu 2
+bump version or release, based on which \fItagger\fP is used, see \fI\&.tito/tito.props\fP;
+.IP \(bu 2
+create an annotated git tag based on our version;
+.IP \(bu 2
+update the spec file accordingly, generate changelog event.
+.UNINDENT
+.sp
+For more options about \fItito tag\fP, run \fItito tag \-\-help\fP\&.
+.SS Test Build
+.sp
+Once release tag is available, we can do some build tests including source tarball checking, and rpm building testing.
+.INDENT 0.0
+.INDENT 3.5
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+# generate local source tarball
+$ tito build \-\-tgz \-\-offline
+
+# generate local rpm build
+$ tito build \-\-rpm \-\-offline
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.UNINDENT
+.UNINDENT
+.sp
+If everything goes well, you could push your commit and tag to remote, otherwise the tag need to be undo:
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+$ tito tag \-u
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.sp
+\fBNOTE:\fP
+.INDENT 0.0
+.INDENT 3.5
+During developing, we could also generate test build any time, which will be based on current \fIHEAD\fP instead of latest tag.
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+# generate test builds
+$ tito build \-\-test \-\-tgz/srpm/rpm
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.UNINDENT
+.UNINDENT
+.SS Push
+.sp
+When you\(aqre happy with your build, it\(aqs time to push commit and tag to remote.
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+$ git push origin && git push origin <your_tag>
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.SS Release
+.sp
+So that user could install \fIdemo\fP packages after enable the repo. [1]
+.INDENT 0.0
+.INDENT 3.5
+.sp
+\fBNOTE:\fP
+.INDENT 0.0
+.INDENT 3.5
+Before doing any release, make sure that you have account on both sites and also make sure that you could
+access to your fedorapeople space [2] and have enough permissions [3] to build \fIdemo\fP in \fICopr\fP\&.
+.sp
+You need to create a directory called \fIdemo_srpms/\fP under your fedorapeople space \fIpublic_html/\fP to hold all the uploaded
+srpms.
+.sp
+\fIcopr\-cli\fP will be used, installed by \fIsudo yum/dnf install copr\-cli\fP and configure it. [4]
+.UNINDENT
+.UNINDENT
+.UNINDENT
+.UNINDENT
+.sp
+Currently there are two projects in \fICopr\fP: \fIdemo\fP for all tag based releases and \fIdemo\-test\fP for test builds. We have two
+release targets in \fItito\fP, \fIcopr\-demo\fP is for \fIdemo\fP in \fICopr\fP and \fIcopr\-demo\-test\fP is for \fIdemo\-test\fP respectively.
+.sp
+Request as \fIBuilder\fP for projects \fIdemo/demo\-test\fP and \fIdemo/demo\fP, wait until admin approves.
+.sp
+After all setup, release with \fItito\fP:
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+$ tito release copr\-demo
+# or
+$ tito release copr\-demo\-test
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.sp
+Go and grab a cup of tea or coffee, the release build will be come out soon
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+# test builds: \(gahttps://copr.fedoraproject.org/coprs/demo/demo\-test/builds/\(ga
+# tag based builds: \(gahttps://copr.fedoraproject.org/coprs/demo/demo/builds/\(ga
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.IP [1] 5
+\fI\%https://fedorahosted.org/copr/wiki/HowToEnableRepo\fP
+.IP [2] 5
+\fI\%http://fedoraproject.org/wiki/Infrastructure/fedorapeople.org#Accessing_Your_fedorapeople.org_Space\fP
+.IP [3] 5
+\fI\%https://fedorahosted.org/copr/wiki/UserDocs#CanIgiveaccesstomyrepotomyteammate\fP
+.IP [4] 5
+\fI\%https://copr.fedoraproject.org/api/\fP
+.INDENT 0.0
+.IP \(bu 2
+genindex
+.IP \(bu 2
+search
+.UNINDENT
+.SH AUTHOR
+Demo Devel Team
+.SH COPYRIGHT
+2014-2015, Demo Devel Team
+.\" Generated by docutils manpage writer.
+.
